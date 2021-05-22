@@ -1,2 +1,0 @@
-class WatchlistCoinsController < ApplicationController
-end

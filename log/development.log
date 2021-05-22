@@ -71,3 +71,147 @@ FOREIGN KEY ("coin_id")
   [1m[36mWatchlistCoin Create (1.0ms)[0m  [1m[32mINSERT INTO "watchlist_coins" ("watchlist_id", "coin_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["watchlist_id", 1], ["coin_id", 1], ["created_at", "2021-05-21 22:00:37.814028"], ["updated_at", "2021-05-21 22:00:37.814028"]]
   [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
   [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" INNER JOIN "watchlist_coins" ON "coins"."id" = "watchlist_coins"."coin_id" WHERE "watchlist_coins"."watchlist_id" = ? /* loading for inspect */ LIMIT ?[0m  [["watchlist_id", 1], ["LIMIT", 11]]
+Started GET "/" for 127.0.0.1 at 2021-05-21 18:06:33 -0400
+  [1m[35m (1.0ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/cruser/.rvm/gems/ruby-2.6.1/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/cruser/.rvm/gems/ruby-2.6.1/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 35.3ms | Allocations: 480)
+Completed 200 OK in 66ms (Views: 43.8ms | ActiveRecord: 0.0ms | Allocations: 4151)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:06:42 -0400
+Processing by WatchlistsController#index as HTML
+Completed 500 Internal Server Error in 17ms (ActiveRecord: 0.0ms | Allocations: 3656)
+
+
+  
+NameError (undefined local variable or method `sightings' for #<WatchlistsController:0x007f9e06ba75b0>):
+  
+app/controllers/watchlists_controller.rb:4:in `index'
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:07:03 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+  [1m[36mWatchlist Load (0.2ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 14ms (Views: 10.8ms | ActiveRecord: 2.0ms | Allocations: 6044)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:08:16 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+  [1m[36mWatchlist Load (0.2ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 13ms (Views: 10.7ms | ActiveRecord: 1.8ms | Allocations: 5492)
+
+
+Started GET "/coins" for 127.0.0.1 at 2021-05-21 18:09:09 -0400
+  
+AbstractController::ActionNotFound (The action 'index' could not be found for CoinsController):
+  
+actionpack (6.1.3.2) lib/abstract_controller/base.rb:160:in `process'
+actionpack (6.1.3.2) lib/action_controller/metal.rb:190:in `dispatch'
+actionpack (6.1.3.2) lib/action_controller/metal.rb:254:in `dispatch'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:50:in `dispatch'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:33:in `serve'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:50:in `block in serve'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:32:in `each'
+actionpack (6.1.3.2) lib/action_dispatch/journey/router.rb:32:in `serve'
+actionpack (6.1.3.2) lib/action_dispatch/routing/route_set.rb:842:in `call'
+rack (2.2.3) lib/rack/etag.rb:27:in `call'
+rack (2.2.3) lib/rack/conditional_get.rb:27:in `call'
+rack (2.2.3) lib/rack/head.rb:12:in `call'
+activerecord (6.1.3.2) lib/active_record/migration.rb:601:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/callbacks.rb:27:in `block in call'
+activesupport (6.1.3.2) lib/active_support/callbacks.rb:98:in `run_callbacks'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/callbacks.rb:26:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/actionable_exceptions.rb:18:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/debug_exceptions.rb:29:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/show_exceptions.rb:33:in `call'
+railties (6.1.3.2) lib/rails/rack/logger.rb:37:in `call_app'
+railties (6.1.3.2) lib/rails/rack/logger.rb:26:in `block in call'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:99:in `block in tagged'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:37:in `tagged'
+activesupport (6.1.3.2) lib/active_support/tagged_logging.rb:99:in `tagged'
+railties (6.1.3.2) lib/rails/rack/logger.rb:26:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/remote_ip.rb:81:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/request_id.rb:26:in `call'
+rack (2.2.3) lib/rack/runtime.rb:22:in `call'
+activesupport (6.1.3.2) lib/active_support/cache/strategy/local_cache_middleware.rb:29:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/executor.rb:14:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/static.rb:24:in `call'
+rack (2.2.3) lib/rack/sendfile.rb:110:in `call'
+actionpack (6.1.3.2) lib/action_dispatch/middleware/host_authorization.rb:98:in `call'
+railties (6.1.3.2) lib/rails/engine.rb:539:in `call'
+puma (5.3.2) lib/puma/configuration.rb:249:in `call'
+puma (5.3.2) lib/puma/request.rb:77:in `block in handle_request'
+puma (5.3.2) lib/puma/thread_pool.rb:338:in `with_force_shutdown'
+puma (5.3.2) lib/puma/request.rb:76:in `handle_request'
+puma (5.3.2) lib/puma/server.rb:438:in `process_client'
+puma (5.3.2) lib/puma/thread_pool.rb:145:in `block in spawn_thread'
+Started GET "/" for 127.0.0.1 at 2021-05-21 18:09:13 -0400
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/cruser/.rvm/gems/ruby-2.6.1/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/cruser/.rvm/gems/ruby-2.6.1/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.6ms | Allocations: 190)
+Completed 200 OK in 12ms (Views: 10.0ms | ActiveRecord: 0.0ms | Allocations: 824)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:10:27 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.3ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.3ms | Allocations: 696)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:10:28 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.1ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms | Allocations: 703)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:10:29 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.2ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.2ms | Allocations: 695)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:10:51 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.2ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.2ms | Allocations: 695)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:10:52 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.2ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms | Allocations: 695)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:10:53 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.2ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.2ms | Allocations: 695)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:10:53 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.2ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 2.7ms | ActiveRecord: 0.2ms | Allocations: 695)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-21 18:11:12 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.4ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:4:in `index'
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.4ms | Allocations: 713)
+
+
