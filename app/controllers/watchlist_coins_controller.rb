@@ -46,6 +46,6 @@ class WatchlistCoinsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def watchlist_coin_params
-      params.require(:watchlist_coin).permit(:coin_id, :wathlist_id)
+      params.require(:watchlist_coin).permit(:coin_id, :watchlist_id)
     end
 end

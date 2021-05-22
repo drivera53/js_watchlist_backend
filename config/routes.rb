@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :watchlist_coins
   # resources :watchlist_coins
   resources :watchlists
   resources :coins

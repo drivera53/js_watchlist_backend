@@ -12,7 +12,7 @@ class WatchlistCoinsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create watchlist_coin" do
     assert_difference('WatchlistCoin.count') do
-      post watchlist_coins_url, params: { watchlist_coin: { coin_id: @watchlist_coin.coin_id, wathlist_id: @watchlist_coin.wathlist_id } }, as: :json
+      post watchlist_coins_url, params: { watchlist_coin: { coin_id: @watchlist_coin.coin_id, watchlist_id: @watchlist_coin.watchlist_id } }, as: :json
     end
 
     assert_response 201
@@ -24,7 +24,7 @@ class WatchlistCoinsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update watchlist_coin" do
-    patch watchlist_coin_url(@watchlist_coin), params: { watchlist_coin: { coin_id: @watchlist_coin.coin_id, wathlist_id: @watchlist_coin.wathlist_id } }, as: :json
+    patch watchlist_coin_url(@watchlist_coin), params: { watchlist_coin: { coin_id: @watchlist_coin.coin_id, watchlist_id: @watchlist_coin.watchlist_id } }, as: :json
     assert_response 200
   end
 
