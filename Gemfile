@@ -38,4 +38,15 @@ end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+
+# Using Fast JSON API Serializer
 gem 'fast_jsonapi'
+
+# Handling API
+# gem 'net-http'
+# require 'net/http' ### <=
+# require 'open-uri'
+# gem 'json'
+
+
+

@@ -5,13 +5,17 @@ class WatchlistsController < ApplicationController
   def index
     @watchlists = Watchlist.all
 
-    render json: @watchlists
+    render json: @watchlists, except: [:updated_at]
   end
 
   # GET /watchlists/1
+  # def show
+  #   # render json: @watchlist
+  #   render json: @watchlist.coins
+  # end
   def show
-    # render json: @watchlist
-    render json: @watchlist.coins
+    watchlist = Watchlist.find(params[:id])
+    render json: WatchlistSerializer.new(watchlist)
   end
 
   # POST /watchlists

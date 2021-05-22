@@ -5,14 +5,17 @@ class CoinsController < ApplicationController
   def index
     @coins = Coin.all
 
-    render json: @coins
+    render json: @coins, except: [:created_at, :updated_at] 
   end
 
   # GET /coins/1
+  # def show
+  #   render json: @coin
+  # end
   def show
-    render json: @coin
+    coin = Coin.find(params[:id])
+    render json: CoinSerializer.new(coin)
   end
-
   # POST /coins
   def create
     @coin = Coin.new(coin_params)

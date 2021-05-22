@@ -15,14 +15,25 @@ coin_c = Coin.create(coin_api_id: "bitgrin", name: "BitGrin", symbol: "xbg")
 coin_d = Coin.create(coin_api_id: "bitguild", name: "BitGuild PLAT", symbol: "plat")
 coin_e = Coin.create(coin_api_id: "bithachi", name: "Bithachi", symbol: "bith")
 
-# Creating watchlists
+# # # Creating watchlists
 watchlist_a = Watchlist.create(name: "Top 20", description: "Top 20 coins by market cap")
 watchlist_b = Watchlist.create(name: "Most searched", description: "Most searched coins in the last 24hrs")
 
-# Creating watchlist_coins 
+# # # Creating watchlist_coins 
 watchlist_coins_a = WatchlistCoin.create(coin: coin_a, watchlist: watchlist_a)
 watchlist_coins_b = WatchlistCoin.create(coin: coin_b, watchlist: watchlist_b)
 watchlist_coins_c = WatchlistCoin.create(coin: coin_c, watchlist: watchlist_a)
 watchlist_coins_d = WatchlistCoin.create(coin: coin_d, watchlist: watchlist_b)
 watchlist_coins_e = WatchlistCoin.create(coin: coin_e, watchlist: watchlist_a)
 watchlist_coins_f = WatchlistCoin.create(coin: coin_a, watchlist: watchlist_b)
+
+# Seed all coins from Coin Gecko API and create coin objects.
+# require 'net/http'
+# url = "https://api.coingecko.com/api/v3/coins/list?include_platform=false"
+# request = URI.parse(url)
+# response = Net::HTTP.get_response(request)
+# crypto_hash = JSON.parse(response.body)
+
+# crypto_hash.each do |crypto_object|
+#     Coin.find_or_create_by(coin_api_id: crypto_object['id'], name: crypto_object['name'], symbol: crypto_object['symbol'])
+# end

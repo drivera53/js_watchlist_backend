@@ -1,4 +1,8 @@
 class WatchlistSerializer
   include FastJsonapi::ObjectSerializer
-  attributes 
+  attributes :name, :description
+  has_many :coins
 end
+
+# t.string "name"
+# t.string "description"
