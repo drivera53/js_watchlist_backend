@@ -10,7 +10,8 @@ class WatchlistsController < ApplicationController
 
   # GET /watchlists/1
   def show
-    render json: @watchlist
+    # render json: @watchlist
+    render json: @watchlist.coins
   end
 
   # POST /watchlists

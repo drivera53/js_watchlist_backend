@@ -273,3 +273,222 @@ FOREIGN KEY ("wathlist_id")
   [1m[36mWatchlist Create (0.3ms)[0m  [1m[32mINSERT INTO "watchlists" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Most searched"], ["description", "Most searched coins in the last 24hrs"], ["created_at", "2021-05-22 11:45:15.142844"], ["updated_at", "2021-05-22 11:45:15.142844"]]
   [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
   [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.9ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (1.4ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.9ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCoins (20210522111555)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "coins" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_api_id" varchar, "name" varchar, "symbol" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210522111555"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateWatchlists (20210522112017)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.5ms)[0m  [1m[35mCREATE TABLE "watchlists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210522112017"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateWatchlistCoins (20210522115130)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "watchlist_coins" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer NOT NULL, "watchlist_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_0bb4488606"
+FOREIGN KEY ("coin_id")
+  REFERENCES "coins" ("id")
+, CONSTRAINT "fk_rails_d1afb7d4cc"
+FOREIGN KEY ("watchlist_id")
+  REFERENCES "watchlists" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_watchlist_coins_on_coin_id" ON "watchlist_coins" ("coin_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_watchlist_coins_on_watchlist_id" ON "watchlist_coins" ("watchlist_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.2ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210522115130"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.1ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-22 11:53:51.842726"], ["updated_at", "2021-05-22 11:53:51.842726"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.6ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (7.3ms)[0m  [1m[35mCREATE TABLE "schema_migrations" ("version" varchar NOT NULL PRIMARY KEY)[0m
+  [1m[35m (1.3ms)[0m  [1m[35mCREATE TABLE "ar_internal_metadata" ("key" varchar NOT NULL PRIMARY KEY, "value" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Migrating to CreateCoins (20210522111555)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "coins" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_api_id" varchar, "name" varchar, "symbol" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.3ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210522111555"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateWatchlists (20210522112017)
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "watchlists" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "name" varchar, "description" varchar, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL)[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.4ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210522112017"]]
+  [1m[36mTRANSACTION (1.3ms)[0m  [1m[36mcommit transaction[0m
+Migrating to CreateWatchlistCoins (20210522115130)
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[35m (0.4ms)[0m  [1m[35mCREATE TABLE "watchlist_coins" ("id" integer PRIMARY KEY AUTOINCREMENT NOT NULL, "coin_id" integer NOT NULL, "watchlist_id" integer NOT NULL, "created_at" datetime(6) NOT NULL, "updated_at" datetime(6) NOT NULL, CONSTRAINT "fk_rails_0bb4488606"
+FOREIGN KEY ("coin_id")
+  REFERENCES "coins" ("id")
+, CONSTRAINT "fk_rails_d1afb7d4cc"
+FOREIGN KEY ("watchlist_id")
+  REFERENCES "watchlists" ("id")
+)[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_watchlist_coins_on_coin_id" ON "watchlist_coins" ("coin_id")[0m
+  [1m[35m (0.1ms)[0m  [1m[35mCREATE INDEX "index_watchlist_coins_on_watchlist_id" ON "watchlist_coins" ("watchlist_id")[0m
+  [1m[36mActiveRecord::SchemaMigration Create (0.5ms)[0m  [1m[32mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20210522115130"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Load (0.2ms)[0m  [1m[34mSELECT "ar_internal_metadata".* FROM "ar_internal_metadata" WHERE "ar_internal_metadata"."key" = ? LIMIT ?[0m  [["key", "environment"], ["LIMIT", 1]]
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mActiveRecord::InternalMetadata Create (0.4ms)[0m  [1m[32mINSERT INTO "ar_internal_metadata" ("key", "value", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["key", "environment"], ["value", "development"], ["created_at", "2021-05-22 11:54:46.426109"], ["updated_at", "2021-05-22 11:54:46.426109"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.4ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCoin Create (0.4ms)[0m  [1m[32mINSERT INTO "coins" ("coin_api_id", "name", "symbol", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["coin_api_id", "bitgesell"], ["name", "Bitgesell"], ["symbol", "bgl"], ["created_at", "2021-05-22 11:55:27.899247"], ["updated_at", "2021-05-22 11:55:27.899247"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCoin Create (0.3ms)[0m  [1m[32mINSERT INTO "coins" ("coin_api_id", "name", "symbol", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["coin_api_id", "bitget-defi-token"], ["name", "Bitget DeFi Token"], ["symbol", "bft"], ["created_at", "2021-05-22 11:55:27.903870"], ["updated_at", "2021-05-22 11:55:27.903870"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCoin Create (0.3ms)[0m  [1m[32mINSERT INTO "coins" ("coin_api_id", "name", "symbol", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["coin_api_id", "bitgrin"], ["name", "BitGrin"], ["symbol", "xbg"], ["created_at", "2021-05-22 11:55:27.907245"], ["updated_at", "2021-05-22 11:55:27.907245"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCoin Create (0.4ms)[0m  [1m[32mINSERT INTO "coins" ("coin_api_id", "name", "symbol", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["coin_api_id", "bitguild"], ["name", "BitGuild PLAT"], ["symbol", "plat"], ["created_at", "2021-05-22 11:55:27.910864"], ["updated_at", "2021-05-22 11:55:27.910864"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mCoin Create (0.3ms)[0m  [1m[32mINSERT INTO "coins" ("coin_api_id", "name", "symbol", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["coin_api_id", "bithachi"], ["name", "Bithachi"], ["symbol", "bith"], ["created_at", "2021-05-22 11:55:27.914536"], ["updated_at", "2021-05-22 11:55:27.914536"]]
+  [1m[36mTRANSACTION (1.0ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWatchlist Create (0.3ms)[0m  [1m[32mINSERT INTO "watchlists" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Top 20"], ["description", "Top 20 coins by market cap"], ["created_at", "2021-05-22 11:55:27.923344"], ["updated_at", "2021-05-22 11:55:27.923344"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWatchlist Create (0.3ms)[0m  [1m[32mINSERT INTO "watchlists" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Most searched"], ["description", "Most searched coins in the last 24hrs"], ["created_at", "2021-05-22 11:55:27.927263"], ["updated_at", "2021-05-22 11:55:27.927263"]]
+  [1m[36mTRANSACTION (1.4ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWatchlistCoin Create (0.4ms)[0m  [1m[32mINSERT INTO "watchlist_coins" ("coin_id", "watchlist_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 1], ["watchlist_id", 1], ["created_at", "2021-05-22 11:55:27.942026"], ["updated_at", "2021-05-22 11:55:27.942026"]]
+  [1m[36mTRANSACTION (0.9ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWatchlistCoin Create (0.4ms)[0m  [1m[32mINSERT INTO "watchlist_coins" ("coin_id", "watchlist_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 2], ["watchlist_id", 2], ["created_at", "2021-05-22 11:55:27.945891"], ["updated_at", "2021-05-22 11:55:27.945891"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWatchlistCoin Create (0.4ms)[0m  [1m[32mINSERT INTO "watchlist_coins" ("coin_id", "watchlist_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 3], ["watchlist_id", 1], ["created_at", "2021-05-22 11:55:27.949893"], ["updated_at", "2021-05-22 11:55:27.949893"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWatchlistCoin Create (0.4ms)[0m  [1m[32mINSERT INTO "watchlist_coins" ("coin_id", "watchlist_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 4], ["watchlist_id", 2], ["created_at", "2021-05-22 11:55:27.953738"], ["updated_at", "2021-05-22 11:55:27.953738"]]
+  [1m[36mTRANSACTION (1.1ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.0ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWatchlistCoin Create (0.4ms)[0m  [1m[32mINSERT INTO "watchlist_coins" ("coin_id", "watchlist_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 5], ["watchlist_id", 1], ["created_at", "2021-05-22 11:55:27.957591"], ["updated_at", "2021-05-22 11:55:27.957591"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+  [1m[36mTRANSACTION (0.1ms)[0m  [1m[36mbegin transaction[0m
+  [1m[36mWatchlistCoin Create (0.4ms)[0m  [1m[32mINSERT INTO "watchlist_coins" ("coin_id", "watchlist_id", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["coin_id", 1], ["watchlist_id", 2], ["created_at", "2021-05-22 11:55:27.980603"], ["updated_at", "2021-05-22 11:55:27.980603"]]
+  [1m[36mTRANSACTION (1.2ms)[0m  [1m[36mcommit transaction[0m
+Started GET "/" for 127.0.0.1 at 2021-05-22 07:56:21 -0400
+  [1m[35m (1.2ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  [1m[35m (0.5ms)[0m  [1m[34mSELECT "schema_migrations"."version" FROM "schema_migrations" ORDER BY "schema_migrations"."version" ASC[0m
+Processing by Rails::WelcomeController#index as HTML
+  Rendering /Users/cruser/.rvm/gems/ruby-2.6.1/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb
+  Rendered /Users/cruser/.rvm/gems/ruby-2.6.1/gems/railties-6.1.3.2/lib/rails/templates/rails/welcome/index.html.erb (Duration: 8.6ms | Allocations: 315)
+Completed 200 OK in 35ms (Views: 13.8ms | ActiveRecord: 0.0ms | Allocations: 2576)
+
+
+Started GET "/coins" for 127.0.0.1 at 2021-05-22 07:56:27 -0400
+Processing by CoinsController#index as HTML
+  [1m[36mCoin Load (0.5ms)[0m  [1m[34mSELECT "coins".* FROM "coins"[0m
+  ↳ app/controllers/coins_controller.rb:8:in `index'
+Completed 200 OK in 20ms (Views: 11.2ms | ActiveRecord: 1.4ms | Allocations: 6985)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-22 07:56:52 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.5ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:8:in `index'
+Completed 200 OK in 13ms (Views: 6.7ms | ActiveRecord: 1.6ms | Allocations: 4827)
+
+
+Started GET "/watchlists/1" for 127.0.0.1 at 2021-05-22 07:57:03 -0400
+Processing by WatchlistsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mWatchlist Load (0.3ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists" WHERE "watchlists"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/watchlists_controller.rb:44:in `set_watchlist'
+Completed 200 OK in 5ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 1020)
+
+
+Started GET "/watchlists/" for 127.0.0.1 at 2021-05-22 08:03:00 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/watchlists_controller.rb:8:in `index'
+  [1m[36mWatchlist Load (2.4ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:8:in `index'
+Completed 200 OK in 9ms (Views: 8.3ms | ActiveRecord: 3.0ms | Allocations: 1419)
+
+
+Started GET "/watchlists/1" for 127.0.0.1 at 2021-05-22 08:03:16 -0400
+Processing by WatchlistsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mWatchlist Load (0.3ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists" WHERE "watchlists"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/watchlists_controller.rb:44:in `set_watchlist'
+Completed 200 OK in 3ms (Views: 0.7ms | ActiveRecord: 0.3ms | Allocations: 610)
+
+
+Started GET "/watchlists/1" for 127.0.0.1 at 2021-05-22 08:03:46 -0400
+Processing by WatchlistsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/watchlists_controller.rb:44:in `set_watchlist'
+  [1m[36mWatchlist Load (0.1ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists" WHERE "watchlists"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/watchlists_controller.rb:44:in `set_watchlist'
+  [1m[36mCoin Load (0.9ms)[0m  [1m[34mSELECT "coins".* FROM "coins" INNER JOIN "watchlist_coins" ON "coins"."id" = "watchlist_coins"."coin_id" WHERE "watchlist_coins"."watchlist_id" = ?[0m  [["watchlist_id", 1]]
+  ↳ app/controllers/watchlists_controller.rb:13:in `show'
+Completed 200 OK in 55ms (Views: 26.8ms | ActiveRecord: 2.8ms | Allocations: 15221)
+
+
+Started GET "/watchlists/1" for 127.0.0.1 at 2021-05-22 08:04:26 -0400
+Processing by WatchlistsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/watchlists_controller.rb:45:in `set_watchlist'
+  [1m[36mWatchlist Load (0.4ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists" WHERE "watchlists"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/watchlists_controller.rb:45:in `set_watchlist'
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" INNER JOIN "watchlist_coins" ON "coins"."id" = "watchlist_coins"."coin_id" WHERE "watchlist_coins"."watchlist_id" = ?[0m  [["watchlist_id", 1]]
+  ↳ app/controllers/watchlists_controller.rb:14:in `show'
+Completed 200 OK in 31ms (Views: 9.4ms | ActiveRecord: 3.4ms | Allocations: 12224)
+
+
+Started GET "/watchlists/2" for 127.0.0.1 at 2021-05-22 08:04:29 -0400
+Processing by WatchlistsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mWatchlist Load (0.2ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists" WHERE "watchlists"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/watchlists_controller.rb:45:in `set_watchlist'
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" INNER JOIN "watchlist_coins" ON "coins"."id" = "watchlist_coins"."coin_id" WHERE "watchlist_coins"."watchlist_id" = ?[0m  [["watchlist_id", 2]]
+  ↳ app/controllers/watchlists_controller.rb:14:in `show'
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.4ms | Allocations: 1686)
+
+
+Started GET "/watchlists" for 127.0.0.1 at 2021-05-22 08:04:40 -0400
+Processing by WatchlistsController#index as HTML
+  [1m[36mWatchlist Load (0.3ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists"[0m
+  ↳ app/controllers/watchlists_controller.rb:8:in `index'
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.3ms | Allocations: 843)
+
+
+Started GET "/watchlists/1" for 127.0.0.1 at 2021-05-22 08:15:33 -0400
+Processing by WatchlistsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35m (0.1ms)[0m  [1m[34mSELECT sqlite_version(*)[0m
+  ↳ app/controllers/watchlists_controller.rb:45:in `set_watchlist'
+  [1m[36mWatchlist Load (0.3ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists" WHERE "watchlists"."id" = ? LIMIT ?[0m  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/watchlists_controller.rb:45:in `set_watchlist'
+  [1m[36mCoin Load (0.3ms)[0m  [1m[34mSELECT "coins".* FROM "coins" INNER JOIN "watchlist_coins" ON "coins"."id" = "watchlist_coins"."coin_id" WHERE "watchlist_coins"."watchlist_id" = ?[0m  [["watchlist_id", 1]]
+  ↳ app/controllers/watchlists_controller.rb:14:in `show'
+Completed 200 OK in 8ms (Views: 3.2ms | ActiveRecord: 0.9ms | Allocations: 2165)
+
+
+Started GET "/watchlists/2" for 127.0.0.1 at 2021-05-22 08:15:37 -0400
+Processing by WatchlistsController#show as HTML
+  Parameters: {"id"=>"2"}
+  [1m[36mWatchlist Load (0.1ms)[0m  [1m[34mSELECT "watchlists".* FROM "watchlists" WHERE "watchlists"."id" = ? LIMIT ?[0m  [["id", 2], ["LIMIT", 1]]
+  ↳ app/controllers/watchlists_controller.rb:45:in `set_watchlist'
+  [1m[36mCoin Load (0.2ms)[0m  [1m[34mSELECT "coins".* FROM "coins" INNER JOIN "watchlist_coins" ON "coins"."id" = "watchlist_coins"."coin_id" WHERE "watchlist_coins"."watchlist_id" = ?[0m  [["watchlist_id", 2]]
+  ↳ app/controllers/watchlists_controller.rb:14:in `show'
+Completed 200 OK in 5ms (Views: 3.3ms | ActiveRecord: 0.4ms | Allocations: 1683)
+
+
