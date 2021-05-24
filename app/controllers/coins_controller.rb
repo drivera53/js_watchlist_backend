@@ -14,7 +14,7 @@ class CoinsController < ApplicationController
   # end
   
   def show
-    coin = Coin.find(params[:id])
+    coin = Coin.find(params[:id]) 
     require 'net/http'
     url = url = "https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=#{coin.coin_api_id}&order=market_cap_desc&per_page=100&page=1&sparkline=false&price_change_percentage=1h"
     request = URI.parse(url)
