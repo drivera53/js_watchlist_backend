@@ -46,7 +46,11 @@ class WatchlistsController < ApplicationController
 
   # DELETE /watchlists/1
   def destroy
-    @watchlist.destroy
+    if @watchlist.destroy
+      render json: {message: "Successfully deleted", watchlist: @watchlist}
+    else
+      render json: {message: "Failed to delete"}
+    end
   end
 
   private
