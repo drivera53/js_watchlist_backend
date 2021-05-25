@@ -9,14 +9,14 @@ class WatchlistsController < ApplicationController
   end
 
   # GET /watchlists/1
-  # def show
-  #   # render json: @watchlist
-  #   render json: @watchlist.coins
-  # end
   def show
-    watchlist = Watchlist.find(params[:id])
-    render json: WatchlistSerializer.new(watchlist)
+    # render json: @watchlist
+    render json: @watchlist.coins, only: [:id]
   end
+  # def show
+  #   watchlist = Watchlist.find(params[:id])
+  #   render json: WatchlistSerializer.new(watchlist)
+  # end
 
   # POST /watchlists
   def create
@@ -38,9 +38,15 @@ class WatchlistsController < ApplicationController
   # PATCH/PUT /watchlists/1
   def update
     if @watchlist.update(watchlist_params)
-      render json: @watchlist
+      render json: {
+        status: 200,
+        watchlist: @watchlist
+    }
     else
-      render json: @watchlist.errors, status: :unprocessable_entity
+      render json: {
+        status: 400,
+        errors: @watchlist.errors.full_messages.join(", ")
+        }, status: :unprocessable_entity
     end
   end
 

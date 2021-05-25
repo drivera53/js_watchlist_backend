@@ -16,6 +16,7 @@ ActiveRecord::Schema.define(version: 2021_05_22_115130) do
     t.string "coin_api_id"
     t.string "name"
     t.string "symbol"
+    t.string "image"
     t.decimal "current_price"
     t.decimal "price_change_percentage_1h_in_currency"
     t.decimal "high_24h"

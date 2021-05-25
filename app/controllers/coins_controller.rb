@@ -20,6 +20,7 @@ class CoinsController < ApplicationController
     request = URI.parse(url)
     response = Net::HTTP.get_response(request)
     crypto_hash = JSON.parse(response.body)
+    coin.image = crypto_hash[0]['image']
     coin.current_price = crypto_hash[0]['current_price']
     coin.price_change_percentage_1h_in_currency = crypto_hash[0]['price_change_percentage_1h_in_currency']
     coin.high_24h = crypto_hash[0]['high_24h']
@@ -30,7 +31,8 @@ class CoinsController < ApplicationController
     coin.circulating_supply = crypto_hash[0]['circulating_supply']
 
     # Serializer
-    render json: CoinSerializer.new(coin)
+    # render json: CoinSerializer.new(coin)
+    render json: coin
   end
   # POST /coins
   def create

@@ -4,6 +4,7 @@ class CreateCoins < ActiveRecord::Migration[6.1]
       t.string :coin_api_id
       t.string :name
       t.string :symbol
+      t.string :image
       t.decimal :current_price
       t.decimal :price_change_percentage_1h_in_currency
       t.decimal :high_24h
