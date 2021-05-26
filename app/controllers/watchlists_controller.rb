@@ -24,6 +24,7 @@ class WatchlistsController < ApplicationController
 
     if @watchlist.save
       render json: {
+        message: "Watchlist successfully created!",
         status: 201,
         watchlist: @watchlist
       }, status: :created, location: @watchlist
@@ -58,9 +59,9 @@ class WatchlistsController < ApplicationController
     end
     # Delete Watchlist
     if @watchlist.destroy
-      render json: {message: "Successfully deleted", watchlist: @watchlist}
+      render json: {message: "Successfully deleted.", watchlist: @watchlist}
     else
-      render json: {message: "Failed to delete"}
+      render json: {message: "Failed to delete."}
     end
   end
 
