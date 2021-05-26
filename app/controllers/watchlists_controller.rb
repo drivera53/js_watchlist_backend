@@ -52,6 +52,11 @@ class WatchlistsController < ApplicationController
 
   # DELETE /watchlists/1
   def destroy
+    # Delete all its associations first
+    @watchlist.watchlist_coins.each do |watchlist_coin|
+      watchlist_coin.destroy
+    end
+    # Delete Watchlist
     if @watchlist.destroy
       render json: {message: "Successfully deleted", watchlist: @watchlist}
     else
